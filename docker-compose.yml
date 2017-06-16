@@ -1,0 +1,18 @@
+version: '3.1'
+services:
+    jenkins:
+        image: "jenkins:2.46.3-alpine"
+        environment:
+            - "HOST_HOSTNAME=/etc/host_hostname"
+        ports:
+            - "8080:8080"
+            - "50000:50000"
+        networks: 
+            - jenkins
+        volumes:
+            - /opt/jenkins:/var/jenkins_home
+
+networks:
+    jenkins:
+        driver: overlay
+
