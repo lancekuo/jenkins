@@ -1,7 +1,7 @@
 version: '3.1'
 services:
     jenkins:
-        image: "jenkins:2.46.3-alpine"
+        image: "jenkins/jenkins:2.79-alpine"
         ports:
             - "8080:8080"
             - "50000:50000"
