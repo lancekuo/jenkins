@@ -4,12 +4,18 @@ services:
         image: "lancekuo/jenkins-github-auth:2.118-alpine"
         build: .
         environment:
+            - JENKINS_OPTS=--httpPort=-1 --httpsPort=8443 --httpsCertificate=/var/jenkins_home/letsencrypt/live/cert.pem --httpsPrivateKey=/var/jenkins_home/letsencrypt/live/privkey-rsa.pem
             - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID:client_id}
             - GITHUB_SECRET_KEY=${GITHUB_SECRET_KEY:secret_key}
             - GITHUB_ADMIN_USERNAME=${GITHUB_ADMIN_USERNAME:user}
             - GITHUB_ORG_NAME=${GITHUB_ORG_NAME:org}
         ports:
-            - "8080:8080"
+#            - "8080:8080"
+            - "8443:8443"
             - "50000:50000"
         volumes:
             - /opt/jenkins:/var/jenkins_home
+    nginx:
+        image: articulate/http-to-https
+        ports:
+            - "8080:80"
