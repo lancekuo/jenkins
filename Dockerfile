@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.118-alpine
+FROM jenkins/jenkins:2.124-alpine
 
 #get rid of admin password setup
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
